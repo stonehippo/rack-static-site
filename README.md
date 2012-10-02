@@ -52,7 +52,7 @@ The default config supports cache-busting on assets with the following extension
     .gif
     .pdf
 
-* Well, techinically not. The original item is still cached, but it's not being used any more.
+* Well, technically not. The original item is still cached, but it's not being used any more.
 
 
 Modifying or Disabling Password Authentication
