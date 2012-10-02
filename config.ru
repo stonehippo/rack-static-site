@@ -17,6 +17,7 @@ use Rack::StaticCache, :urls => ['/assets', '/css', '/js', '/lib'], :root => 'pu
 
 use Rack::Rewrite do
   rewrite '/', '/index.html'
+  rewrite %r{^(.+)\.(\d+)\.(js|css|png|jpg|gif|pdf)$}, '$1.$3'
 end
 
 run Rack::Directory.new('public')
