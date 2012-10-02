@@ -41,7 +41,7 @@ Whenever you want to update the file, and ensure that everyone who comes back to
 
 Changing the reference URL will effectively invalidate the item in any and all caches.* From the perspective of the cache, this is a new document, and it will now cache the new version and begin using that version.
 
-One tip: using something sensible for the cache-busting number included in the URL reference, such as a timestamp based on the date (and perhaps, time). This will keep you much saner that the valid, but almost uses `styles.1.css`. If you are diligent, you can look at the URL and know exactly when you last updated the resource.
+One tip: using something sensible for the cache-busting number included in the URL reference, such as a timestamp based on the date (and perhaps, time). This will keep you much saner that the valid, but almost useless `styles.1.css`. If you are diligent, you can look at the URL and know exactly when you last updated the resource.
 
 The default config supports cache-busting on assets with the following extensions:
 
