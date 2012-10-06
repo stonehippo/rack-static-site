@@ -17,22 +17,22 @@ The site template enables `Rack::StaticCache` to give you the benefits of client
     js
     lib
 
-You can disable caching entirely by commenting out the `Rack::StaticCache` stuff in `config.ru`, or you can take control of how assets are cached with **cache-busting**.
+You can disable caching entirely by commenting out the `Rack::StaticCache` stuff in `config.ru` (perhaps relying on server-level configuration for your caching config), or you can take control of how assets are cached with **cache-busting**.
 
 Using Cache-Busting
 -------------------
 
-The template includes a rewrite rule that will allow you to use cache-busting with some common Web asset types. Cache-busting is a simple technique that let's you take advantage of client-side (and proxy) caching while retaining control over pushing new versions of assets whenever you need to.
+Cache-busting is a simple technique that let's you take advantage of client-side (and proxy) caching while retaining control over pushing new versions of assets whenever you need to.
 
 It works like this:
 
 1. Create an asset for use in your site in one of the cached folders (e.g. `css/styles.css`)
-2. Whenever you include a reference to the file someplace, such as a `<link>` to the stylesheet, add some numbers to the filename, between the name and the extension (e.g. `<link rel='stylesheet' href='/css/styles.20121002.css'>`)
+2. Whenever you include a reference to the file someplace, such as a `<link>` to the stylesheet, add some numbers to the filename, prefixed with a hyphen, between the name and the extension (e.g. `<link rel='stylesheet' href='/css/styles-20121002.css'>`)
 3. Profit.
 
 So, what exactly is going on here?
 
-It's pretty simple, really. We have a default rewrite rule in our app config that converts the URL request from the version with a number to the plain version, so our requests will be satisfied by the real file. Any caches that wish to store the resource will use the number-included path as the key to the cached item. 
+It's pretty simple, really. `Rack::StaticCache` converts the URL request from the version with a number to the plain version, so our requests will be satisfied by the real file. Any caches that wish to store the resource will use the number-included path as the key to the cached item. 
 
 Whenever you want to update the file, and ensure that everyone who comes back to your site gets the latest and greatest, you need to do a couple of things:
 
@@ -41,7 +41,9 @@ Whenever you want to update the file, and ensure that everyone who comes back to
 
 Changing the reference URL will effectively invalidate the item in any and all caches*. From the perspective of the cache, this is a new document, and it will now cache the new version and begin using that version.
 
-One tip: using something sensible for the cache-busting number included in the URL reference, such as a timestamp based on the date (and perhaps, time). This will keep you much saner that the valid, but almost useless `styles.1.css`. If you are diligent, you can look at the URL and know exactly when you last updated the resource.
+One tip: using something sensible for the cache-busting number included in the URL reference, such as a timestamp based on the date (and perhaps, time). This will keep you much saner that the valid, but almost useless `styles-1.css`. If you are diligent, you can look at the URL and know exactly when you last updated the resource.
+
+If you don't want to use `Rack::StaticCache` (if, for example, you use a `.htaccess` to manage caching, such as the one that comes with HTML5 Boilerplate), you can still take advantage of cache-busting URLs. The template includes a rewrite rule that will allow you to use cache-busting with some common Web asset types. Simply uncomment the rewrite rule and you can use cache-busting URLs exactly like you can with `Rack::StaticCache`.
 
 The default config supports cache-busting on assets with the following extensions:
 
@@ -51,6 +53,8 @@ The default config supports cache-busting on assets with the following extension
     .jpg
     .gif
     .pdf
+    
+You can add other extensions to the config as needed.
 
 \* Well, technically not. The original item is still cached, but it's not being used any more.
 
