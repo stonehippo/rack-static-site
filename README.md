@@ -12,13 +12,9 @@ What You Need to Get Started
 
 Not much, really.
 
-Your system needs to be able to run [the Heroku toolbelt](https://toolbelt.heroku.com/), which has the essential tools required for deploying to Heroku.
+Your system needs to be able to run [the Heroku toolbelt](https://toolbelt.heroku.com/), which has the essential tools required for deploying to Heroku, including the heroku command line tool, GIT, SSH, foreman (a web server), and a recent `ruby` (if you don't already have one).
 
-Since this rack uses the Ruby-based [Rack](http://rack.github.com/), you probably want to have a `ruby` of some kind installed. If you're running on Mac OS X, you probably have one installed already; this is also likely if you are a Linux kinda person.
-
-If you're on Windows, you'll want [RubyInstaller](http://rubyinstaller.org/). 
-
-You will also find [Bundler](http://gembundler.com/) very useful. install it with as a rubygem if you don't already have it:
+You will also find [Bundler](http://gembundler.com/) very useful. install it as a rubygem if you don't already have it:
 
     gem install bundler
     
