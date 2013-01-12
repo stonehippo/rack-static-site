@@ -4,6 +4,10 @@
 # To Public License, Version 2, as published by Sam Hocevar. See
 #  http://sam.zoy.org/wtfpl/COPYING for more details.
 
+# if you want to set a default port for this app, remove the first hash/pound
+# from the next line and set the port number to whatever you need it to be
+##\ -p 1234
+
 require 'bundler/setup'
 
 Bundler.require(:default, ENV['RACK_ENV'])
