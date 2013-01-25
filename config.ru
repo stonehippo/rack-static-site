@@ -12,9 +12,15 @@ require 'bundler/setup'
 
 Bundler.require(:default, ENV['RACK_ENV'])
 
-use Rack::Auth::Basic, "Please Sign In" do |username, password|
-  [username, password] == ['username', 'password'] # Change the values to whatever you want
-end
+# Set the authentication conditionally based on the RACK_ENV environment variable.
+# In order to set the environment variable for RACK_ENV on heroku you need to add a 
+# config variable using the heroku command on the CLI. Documentation for that can be 
+# found at: https://devcenter.heroku.com/articles/config-vars 
+#if ENV['RACK_ENV'] == 'staging'
+    use Rack::Auth::Basic, "Please Sign In" do |username, password|
+      [username, password] == ['username', 'password'] # Change the values to whatever you want
+    end
+#end
 
 # Cache items placed in the following folders
 use Rack::StaticCache, :urls => ['/assets', '/css', '/js', '/lib'], :root => 'public'
