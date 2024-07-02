@@ -1,7 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    rack (1.4.1)
+    rack (2.2.8.1)
     rack-contrib (2.5.0)
       rack (< 4)
     rack-rewrite (1.2.1)
